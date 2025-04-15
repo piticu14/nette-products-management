@@ -1,0 +1,4 @@
+services:
+	doctrine.metadataCache: Symfony\Component\Cache\Adapter\FilesystemAdapter
+	doctrine.queryCache: Symfony\Component\Cache\Adapter\FilesystemAdapter
+	doctrine.resultCache: Symfony\Component\Cache\Adapter\FilesystemAdapter

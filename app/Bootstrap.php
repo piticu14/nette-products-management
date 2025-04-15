@@ -1,50 +1,54 @@
 <?php
 
-declare(strict_types=1);
+  declare(strict_types=1);
 
-namespace App;
+  namespace App;
 
-use Nette;
-use Nette\Bootstrap\Configurator;
-
-
-class Bootstrap
-{
-	private Configurator $configurator;
-	private string $rootDir;
+  use Nette;
+  use Nette\Bootstrap\Configurator;
 
 
-	public function __construct()
-	{
-		$this->rootDir = dirname(__DIR__);
-		$this->configurator = new Configurator;
-		$this->configurator->setTempDirectory($this->rootDir . '/temp');
-	}
+  class Bootstrap
+  {
+    private Configurator $configurator;
+    private string $rootDir;
 
 
-	public function bootWebApplication(): Nette\DI\Container
-	{
-		$this->initializeEnvironment();
-		$this->setupContainer();
-		return $this->configurator->createContainer();
-	}
+    public function __construct()
+    {
+      $this->rootDir = dirname(__DIR__);
+      $this->configurator = new Configurator;
+      $this->configurator->setTempDirectory($this->rootDir . '/temp');
+    }
 
 
-	public function initializeEnvironment(): void
-	{
-		//$this->configurator->setDebugMode('secret@23.75.345.200'); // enable for your remote IP
-		$this->configurator->enableTracy($this->rootDir . '/log');
-
-		$this->configurator->createRobotLoader()
-			->addDirectory(__DIR__)
-			->register();
-	}
+    public function bootWebApplication(): Nette\DI\Container
+    {
+      $this->initializeEnvironment();
+      $this->setupContainer();
+      return $this->configurator->createContainer();
+    }
 
 
-	private function setupContainer(): void
-	{
-		$configDir = $this->rootDir . '/config';
-		$this->configurator->addConfig($configDir . '/common.neon');
-		$this->configurator->addConfig($configDir . '/services.neon');
-	}
-}
+    public function initializeEnvironment(): void
+    {
+      //$this->configurator->setDebugMode('secret@23.75.345.200'); // enable for your remote IP
+      $this->configurator->enableTracy($this->rootDir . '/log');
+
+      $this->configurator->createRobotLoader()
+          ->addDirectory(__DIR__)
+          ->register();
+    }
+
+
+    private function setupContainer(): void
+    {
+      $configDir = $this->rootDir . '/config';
+
+      $this->configurator->setDebugMode(getenv('NETTE_DEBUG') === '1' || in_array($_SERVER['REMOTE_ADDR'], ['127.0.0.1', '::1']));
+
+      $this->configurator->addConfig($configDir . '/common.neon');
+      $this->configurator->addConfig($configDir . '/services.neon');
+      $this->configurator->addConfig($configDir . '/' . ($this->configurator->isDebugMode() ? 'dev' : 'prod') . '.neon');
+    }
+  }

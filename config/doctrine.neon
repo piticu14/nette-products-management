@@ -1,0 +1,28 @@
+nettrine.orm:
+    managers:
+        default:
+            connection: default
+            metadataCache: @doctrine.metadataCache
+            queryCache: @doctrine.queryCache
+            resultCache: @doctrine.resultCache
+            mapping:
+                App:
+                    directories: [%appDir%/Model]
+                    namespace: App/Model
+
+nettrine.dbal:
+    connections:
+        default:
+            driver: mysqli
+            host: 127.0.0.1
+            user: root
+            password: password
+            dbname: nette-products-management
+
+nettrine.fixtures:
+  paths:
+    - %appDir%/fixtures
+
+nettrine.migrations:
+    directories:
+        App\Migrations: %appDir%/migrations

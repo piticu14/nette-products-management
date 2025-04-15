@@ -1,0 +1,4 @@
+services:
+	doctrine.metadataCache: Symfony\Component\Cache\Adapter\ArrayAdapter
+	doctrine.queryCache: Symfony\Component\Cache\Adapter\ArrayAdapter
+	doctrine.resultCache: Symfony\Component\Cache\Adapter\ArrayAdapter
