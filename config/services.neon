@@ -1,5 +1,7 @@
 services:
 	- App\Core\RouterFactory::createRouter
+	- App\Migration\CustomMigrationGenerator
+	- App\Command\MakeMigrationCommand
 
 extensions:
   console: Contributte\Console\DI\ConsoleExtension(%consoleMode%)

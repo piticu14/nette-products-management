@@ -25,4 +25,4 @@ nettrine.fixtures:
 
 nettrine.migrations:
     directories:
-        App\Migrations: %appDir%/migrations
+        App\Migrations: %rootDir%/migrations
