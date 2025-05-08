@@ -9,7 +9,7 @@ application:
 
 
 database:
-	dsn: 'mysql:host=127.0.0.1;dbname=nette-products-management'
+	dsn: 'mysql:host=127.0.0.1;dbname=products-management'
 	user: root
 	password: password
 

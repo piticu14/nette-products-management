@@ -23,8 +23,7 @@
 
     protected function configure(): void
     {
-      $this
-          ->addArgument('name', InputArgument::REQUIRED, 'Descriptive migration name (e.g. AddUserStatusColumn)');
+      $this->addArgument('name', InputArgument::REQUIRED, 'Descriptive migration name (e.g. AddUserStatusColumn)');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int

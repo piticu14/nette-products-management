@@ -3,7 +3,6 @@ services:
     image: dockette/web:php-83
     volumes:
       - ./:/srv
-    container_name: "nette4"
     ports:
     - ${HTTP_PORT}:80
     - ${HTTPS_PORT}:443
@@ -12,6 +11,8 @@ services:
     restart: always
     environment:
       MARIADB_ROOT_PASSWORD: password
+    volumes:
+      - ./data:/var/lib/mysql
     ports:
       - 3306:3306
 

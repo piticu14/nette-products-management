@@ -8,16 +8,16 @@ nettrine.orm:
             mapping:
                 App:
                     directories: [%appDir%/Model]
-                    namespace: App/Model
+                    namespace: App\Model
 
 nettrine.dbal:
     connections:
         default:
-            driver: mysqli
-            host: 127.0.0.1
+            driver: pdo_mysql
+            host: db
             user: root
             password: password
-            dbname: nette-products-management
+            dbname: products_management
 
 nettrine.fixtures:
   paths:
